@@ -2,23 +2,24 @@ extends KinematicBody2D
 
 
 const UP = Vector2(0,-1) #normal do solo
-const GRAVITY = 100
-const MAX_FALL_SPEED = 2200
+const GRAVITY = 150
+const MAX_FALL_SPEED = 3000
 var velocity = Vector2()
 var dead = false
 
 var dir = Vector2()
 var speed = 1500
-var jumpForce = 2500
+var jumpForce = 3000
 var slideSpeed = 600
 var wallJumpLerp = 1200
 var dashSpeed = 2400
+var power_gem = false
 var canMove = true
 var wallGrab = false
 var wallJumped = false
 var wallSlide = false
 var isDashing = false
-var can_jump = true
+var can_jump = false
 var leftplataform = 0.0 #usado para permitir que o player pule logo apos sair de uma plataforma
 
 
@@ -46,6 +47,11 @@ func jump():
 			if Input.is_action_pressed("jump"):
 				velocity.y = -jumpForce
 				can_jump = false
+	elif power_gem && can_jump:
+			if Input.is_action_pressed("jump"):
+				velocity.y = -jumpForce
+				can_jump = false
+				power_gem = false
 	if !can_jump:
 		if Input.is_action_just_released("jump"):
 			can_jump = true
@@ -62,7 +68,12 @@ func coyote_time(delta):
 		
 func dead():
 	get_tree().reload_current_scene()
-	
+
+func power_gem():
+	power_gem = true
+
+func animations(anim):
+	$Sprite/AnimationPlayer.play(anim)
 func _physics_process(delta):
 	coyote_time(delta)
 	velocity.y = min(velocity.y + GRAVITY, MAX_FALL_SPEED)
@@ -74,6 +85,10 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		if get_slide_collision(i).collider.name == "Spikes":
 			dead()
+	if power_gem:
+		animations("Power_Gem_Idle")
+	else:
+		animations("Idle")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
