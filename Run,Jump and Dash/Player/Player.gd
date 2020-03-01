@@ -3,13 +3,13 @@ extends KinematicBody2D
 
 const UP = Vector2(0,-1) #normal do solo
 const GRAVITY = 100
-const MAX_FALL_SPEED = 2000
+const MAX_FALL_SPEED = 2200
 var velocity = Vector2()
 var dead = false
 
 var dir = Vector2()
-var speed = 1200
-var jumpForce = 2200
+var speed = 1500
+var jumpForce = 2500
 var slideSpeed = 600
 var wallJumpLerp = 1200
 var dashSpeed = 2400
@@ -19,6 +19,7 @@ var wallJumped = false
 var wallSlide = false
 var isDashing = false
 var can_jump = true
+var leftplataform = 0.0 #usado para permitir que o player pule logo apos sair de uma plataforma
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,6 +41,7 @@ func Walk(dir, delta):
 func jump():
 	if is_on_floor():
 		velocity.y = 5 #para nao ganhar velocidade de queda no solo e para nao bugar o is_on_floor
+	if leftplataform <0.1:
 		if can_jump:
 			if Input.is_action_pressed("jump"):
 				velocity.y = -jumpForce
@@ -51,14 +53,27 @@ func jump():
 				velocity.y = 0
 	if is_on_ceiling():
 		velocity.y = +1
+
+func coyote_time(delta):
+	if !is_on_floor():
+		leftplataform += delta
+	if is_on_floor():
+		leftplataform = 0
 		
+func dead():
+	get_tree().reload_current_scene()
+	
 func _physics_process(delta):
+	coyote_time(delta)
 	velocity.y = min(velocity.y + GRAVITY, MAX_FALL_SPEED)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	dir.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	jump()
 	Walk(dir, delta)
 	move_and_slide(velocity, UP)
+	for i in get_slide_count():
+		if get_slide_collision(i).collider.name == "Spikes":
+			dead()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
