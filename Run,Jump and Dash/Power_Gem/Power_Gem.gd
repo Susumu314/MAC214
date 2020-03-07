@@ -3,8 +3,8 @@ extends Area2D
 
 # Declare member variables here. Examples:
 # var a = 2
-# var b = "text"
-
+var player
+var timer = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,11 +12,18 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if !$Sprite.visible:
+		if !player.power_gem:
+			timer += delta
+			if timer > 0.5:
+				$Sprite.visible = true
+				timer = 0
 
 
 func _on_Area2D_body_entered(body):
 	if body.has_method("power_gem"):
-		body.power_gem()
-		queue_free()
+		player = body
+		if $Sprite.visible:
+			player.power_gem()
+		$Sprite.visible = false

@@ -19,7 +19,7 @@ var wallGrab = false
 var wallJumped = false
 var wallSlide = false
 var isDashing = false
-var can_jump = false
+var can_jump = true
 var leftplataform = 0.0 #usado para permitir que o player pule logo apos sair de uma plataforma
 
 

@@ -24,7 +24,6 @@ points = PoolVector2Array( 55, 55, 5, 55, 5, 55, 30, 15 )
 0/z_index = 0
 
 [node name="Spikes" type="TileMap"]
-scale = Vector2( 2, 2 )
 tile_set = SubResource( 2 )
 cell_size = Vector2( 60, 60 )
 cell_quadrant_size = 60
