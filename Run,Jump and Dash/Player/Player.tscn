@@ -1,10 +1,42 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player_Sprite_Sheet.png" type="Texture" id=2]
 
+[sub_resource type="Animation" id=5]
+resource_name = "Dash_l"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 23 ]
+}
+
 [sub_resource type="Animation" id=1]
-resource_name = "Idle"
+resource_name = "Dash_r"
+length = 0.1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0166667, 0.0333333, 0.05, 0.0666667, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 23, 23, 23, 23, 23, 23 ]
+}
+
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -19,8 +51,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Power_Gem_Idle"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -35,7 +66,7 @@ tracks/0/keys = {
 "values": [ 50 ]
 }
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 57.8661
 
 [node name="Player" type="KinematicBody2D"]
@@ -45,12 +76,15 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 10
+frame = 23
 region_rect = Rect2( 10, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/Idle = SubResource( 1 )
-anims/Power_Gem_Idle = SubResource( 2 )
+anims/Dash_l = SubResource( 5 )
+anims/Dash_r = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Power_Gem_Idle = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.35849, 0.71698 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
