@@ -6,3 +6,5 @@ Dia 01/03 -
 3h de trabalho, feito Tileset simples, fase tutorial 1 focado na movimentacao basica do jogo,  spritesheet bem basica criada para o player, criado objeto "power gem" que permite player a usar habilidades como pulo duplo, mecânica "pulo duplo" implementada
 Dia 07/03 -
 3h de trabalho, pequena melhoria do tileset, criações de fase e testes de level design, criação de um objeto que muda a posicao da camera em relacao ao player para melhor mostrar os obstaculos em certas partes dos leveis.
+Dia 08/03 -
+3h15 de trabalho: Feito mais level design, criação de mecânica que permite dar dash em 4 direcoes e que tambem conseguem quebrar objetos quebraveis, criado obstaculo quebravel, criados sprites necessarios
