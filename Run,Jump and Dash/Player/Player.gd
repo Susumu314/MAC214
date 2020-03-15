@@ -68,32 +68,33 @@ func power_gem():
 	power_gem = true
 
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
-	#if power_gem:
-	if !isDashing:
-		if Input.is_action_just_pressed("dash_attack"):
-			if dir.y >= 0.87:
-				velocity = Vector2(0, 1) * dashSpeed 
-				isDashing = true
-				animations("Dash_r")
-				$Sprite.rotation_degrees = 90
-				return
-			if dir.y <= -0.87:
-				velocity = Vector2(0, -1) * dashSpeed
-				isDashing = true
-				animations("Dash_r")
-				$Sprite.rotation_degrees = 270
-				return
-			if dir.x >= 0.5:
-				velocity = Vector2(1, 0) * dashSpeed
-				isDashing = true
-				animations("Dash_r")
-				return
-			if dir.x <= -0.5:
-				velocity = Vector2(-1, 0) * dashSpeed
-				isDashing = true
-				animations("Dash_r")
-				$Sprite.rotation_degrees = 180
-				return
+	if power_gem:
+		if !isDashing:
+			if Input.is_action_just_pressed("dash_attack"):
+				power_gem = false
+				if dir.y >= 0.87:
+					velocity = Vector2(0, 1) * dashSpeed 
+					isDashing = true
+					animations("Dash_r")
+					$Sprite.rotation_degrees = 90
+					return
+				if dir.y <= -0.87:
+					velocity = Vector2(0, -1) * dashSpeed
+					isDashing = true
+					animations("Dash_r")
+					$Sprite.rotation_degrees = 270
+					return
+				if dir.x >= 0.5:
+					velocity = Vector2(1, 0) * dashSpeed
+					isDashing = true
+					animations("Dash_r")
+					return
+				if dir.x <= -0.5:
+					velocity = Vector2(-1, 0) * dashSpeed
+					isDashing = true
+					animations("Dash_r")
+					$Sprite.rotation_degrees = 180
+					return
 	if isDashing:
 		timer_dash += delta
 		if timer_dash > 0.1:
@@ -105,7 +106,7 @@ func dash(delta):#personagem dá um dash na direcao que o player esta segurando,
 				pass
 			else:
 				velocity = Vector2(0,0)
-				
+					
 				
 func animations(anim):
 	$Sprite/AnimationPlayer.play(anim)
@@ -129,6 +130,8 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta,true, true, true)
 	if collision:
 		if collision.collider.has_method("_break") && isDashing:
+			if "Power" in collision.collider.name:
+				power_gem()
 			collision.collider._break()
 	move_and_slide(velocity, UP)
 	for i in get_slide_count():

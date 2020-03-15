@@ -8,3 +8,5 @@ Dia 07/03 -
 3h de trabalho, pequena melhoria do tileset, criações de fase e testes de level design, criação de um objeto que muda a posicao da camera em relacao ao player para melhor mostrar os obstaculos em certas partes dos leveis.
 Dia 08/03 -
 3h15 de trabalho: Feito mais level design, criação de mecânica que permite dar dash em 4 direcoes e que tambem conseguem quebrar objetos quebraveis, criado obstaculo quebravel, criados sprites necessarios
+DIa 15/03 -
+2h de trabalho: + Level design, criação de blocos que quando quebrados concedem uma carga de poder, criação de obstaculos e inimigos a serem projetados
