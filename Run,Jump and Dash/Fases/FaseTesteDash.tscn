@@ -5,8 +5,9 @@
 [ext_resource path="res://Spikes/Spikes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Power_Gem/Power_Gem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Obstacles/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Obstacles/PowerWall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Obstacles and Enemies/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Obstacles and Enemies/PowerWall.tscn" type="PackedScene" id=7]
+
 
 [node name="Node2D" type="Node2D"]
 

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Run,Jump and Dash"
-run/main_scene="res://Cena Teste.tscn"
+run/main_scene="res://Fases/FaseTeste.tscn"
 config/icon="res://icon.png"
 
 [display]

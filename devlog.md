@@ -10,3 +10,5 @@ Dia 08/03 -
 3h15 de trabalho: Feito mais level design, criação de mecânica que permite dar dash em 4 direcoes e que tambem conseguem quebrar objetos quebraveis, criado obstaculo quebravel, criados sprites necessarios
 DIa 15/03 -
 2h de trabalho: + Level design, criação de blocos que quando quebrados concedem uma carga de poder, criação de obstaculos e inimigos a serem projetados
+Dia 16/03 -
+2h de Trabalho: Level design, implementação de inimigos.

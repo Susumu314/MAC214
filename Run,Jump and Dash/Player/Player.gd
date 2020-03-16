@@ -106,12 +106,30 @@ func dash(delta):#personagem dá um dash na direcao que o player esta segurando,
 				pass
 			else:
 				velocity = Vector2(0,0)
+		var collision = move_and_collide(velocity * delta,true, true, true) #testa colisao para quebrar objetos sem interferir com o movimento do player
+		if collision:
+			if collision.collider.has_method("_break") && isDashing:
+				if "Power" in collision.collider.name:
+					power_gem()
+				if "Enemy" in collision.collider.name:
+					bounce()
+				collision.collider._break()
+				
 					
 				
 func animations(anim):
 	$Sprite/AnimationPlayer.play(anim)
 	
-	
+func bounce():
+	isDashing = false
+	timer_dash = 0
+	velocity = Vector2(0,-jumpForce)
+
+func move():
+	move_and_slide(velocity, UP)
+	for i in get_slide_count():
+		if get_slide_collision(i).collider.name == "Spikes" || "Enemy" in get_slide_collision(i).collider.name:
+			dead()
 func _physics_process(delta):
 	coyote_time(delta)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -126,17 +144,7 @@ func _physics_process(delta):
 		else:
 			animations("Idle")
 	dash(delta)
-	
-	var collision = move_and_collide(velocity * delta,true, true, true)
-	if collision:
-		if collision.collider.has_method("_break") && isDashing:
-			if "Power" in collision.collider.name:
-				power_gem()
-			collision.collider._break()
-	move_and_slide(velocity, UP)
-	for i in get_slide_count():
-		if get_slide_collision(i).collider.name == "Spikes":
-			dead()
+	move()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

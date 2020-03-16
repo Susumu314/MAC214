@@ -5,6 +5,7 @@ extends StaticBody2D
 # var a = 2
 # var b = "text"
 func _break():
+	$CollisionShape2D.disabled = true
 	queue_free()
 
 # Called when the node enters the scene tree for the first time.
