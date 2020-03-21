@@ -12,3 +12,5 @@ DIa 15/03 -
 2h de trabalho: + Level design, criação de blocos que quando quebrados concedem uma carga de poder, criação de obstaculos e inimigos a serem projetados
 Dia 16/03 -
 2h de Trabalho: Level design, implementação de inimigos.
+Dia 21/03 - 
+3h de trabalho: Estudo e analise de mecânicas e level design de jogos semelhantes ao projeto, jogos estudados: Sonic The Hedgehog, Sonic 2, Sonic & Knucles 3, Sonic Lost World e Sonic Mania.
