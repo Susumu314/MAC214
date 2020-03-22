@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 
-const UP = Vector2(0,-1) #normal do solo
+var UP = Vector2(0,-1) #normal do solo
 const GRAVITY = 150
 const MAX_FALL_SPEED = 3000
 var velocity = Vector2()
 var dead = false
 
+var last_dir = Vector2()
 var dir = Vector2()
 var speed = 1500
 var jumpForce = 3000
@@ -34,14 +35,18 @@ func Walk(dir, delta):
 	if wallGrab:
 		return
 	
+	if is_on_floor():
+		if get_floor_normal() != Vector2(0, -1):
+			velocity = Vector2(dir.x * speed * get_floor_normal().y, dir.x*speed*get_floor_normal().x)
+		else:
+			velocity.y = 5 #para nao ganhar velocidade de queda no solo e para nao bugar o is_on_floor
 	if !wallJumped:
 		velocity = Vector2(dir.x * speed, velocity.y)
+		
 	else:
 		velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
 
 func jump():
-	if is_on_floor():
-		velocity.y = 5 #para nao ganhar velocidade de queda no solo e para nao bugar o is_on_floor
 	if leftplataform <0.1:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jumpForce
@@ -68,28 +73,30 @@ func power_gem():
 	power_gem = true
 
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
+	if dir != Vector2(0,0):
+		last_dir = dir
 	if power_gem:
 		if !isDashing:
 			if Input.is_action_just_pressed("dash_attack"):
 				power_gem = false
-				if dir.y >= 0.87:
+				if last_dir.y >= 0.87:
 					velocity = Vector2(0, 1) * dashSpeed 
 					isDashing = true
 					animations("Dash_r")
 					$Sprite.rotation_degrees = 90
 					return
-				if dir.y <= -0.87:
+				if last_dir.y <= -0.87:
 					velocity = Vector2(0, -1) * dashSpeed
 					isDashing = true
 					animations("Dash_r")
 					$Sprite.rotation_degrees = 270
 					return
-				if dir.x >= 0.5:
+				if last_dir.x >= 0.5:
 					velocity = Vector2(1, 0) * dashSpeed
 					isDashing = true
 					animations("Dash_r")
 					return
-				if dir.x <= -0.5:
+				if last_dir.x <= -0.5:
 					velocity = Vector2(-1, 0) * dashSpeed
 					isDashing = true
 					animations("Dash_r")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Power_Gem/Power_Gem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Spikes/Spikes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tiles/TileSet1.tres" type="TileSet" id=4]
+[ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=5]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMaps" type="Node2D" parent="."]
+
+[node name="Spikes" parent="TileMaps" instance=ExtResource( 3 )]
+
+[node name="TileMap" type="TileMap" parent="TileMaps"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 60, 60 )
+cell_custom_transform = Transform2D( 60, 0, 0, 60, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -196608, 0, 262146, -131072, 0, 262147, -65536, 0, 262147, 0, 0, 262147, 65536, 0, 262147, 131072, 0, 262149, 196608, 0, 262149, 262144, 0, 262149, 327680, 0, 262147, 393216, 0, 262147, 458752, 0, 262149, 524288, 0, 262147, 589824, 0, 262149, 655360, 0, 262149, 720896, 0, 262149, 786432, 0, 262149, 851968, 0, 262147, 917504, 0, 262147, 983040, 0, 327683, 983041, 0, 196612, 983042, 0, 196612, 983043, 0, 196612, 983044, 0, 196612, 983045, 0, 327684, 983046, 0, 196612, 983047, 0, 327684, 983048, 0, 196612, 983049, 0, 196612, 983050, 0, 196612, 983051, 0, 196612, 983052, 0, 327684, 983053, 0, 327684, 983054, 0, 327684, 983055, 0, 196612, 983056, 0, 196612, 983057, 0, 327684, 983058, 0, 196612, 983059, 0, 327684, 983060, 0, 327684, 983061, 0, 196612, 983062, 0, 327684, 983063, 0, 327684, 983064, 0, 327684, 983065, 0, 196612, 983066, 0, 196612, 983067, 0, 196612, 983068, 0, 196612, 983069, 0, 327684, 983070, 0, 196612, 983071, 0, 327684, 983072, 0, 393219 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 5 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 858.612, 569.758 )
+
+[node name="Power_Gems" type="Node2D" parent="."]
+
+[node name="Power_Gem" parent="Power_Gems" instance=ExtResource( 2 )]
+position = Vector2( 1571.47, 352.455 )
+
+[node name="InimigosObstaculos" type="Node2D" parent="."]
