@@ -135,7 +135,9 @@ func bounce():
 func move():
 	move_and_slide(velocity, UP)
 	for i in get_slide_count():
-		if get_slide_collision(i).collider.name == "Spikes" || "Enemy" in get_slide_collision(i).collider.name:
+		if get_slide_collision(i).collider.name == "Spikes":
+			dead()
+		if "Enemy" in get_slide_collision(i).collider.name && !isDashing:
 			dead()
 func _physics_process(delta):
 	coyote_time(delta)

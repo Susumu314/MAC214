@@ -1,21 +1,39 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 const tag = "enemy"
-
+const UP = Vector2(0,-1) #normal do solo
+export(int) var SPEED 
+export(int) var dx 
+export(int) var dy 
+var velocity = Vector2()
+var ancora_transform
+var ancora_pos = Vector2()
+var modo
 
 func _break():
 	$CollisionShape2D.disabled = true
 	queue_free()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	velocity = Vector2(dx, dy).normalized()*SPEED
+	ancora_transform = get_node("ancora").get_global_transform()
+	ancora_pos = ancora_transform[2]
+	print(ancora_pos)
 
+func _process(delta):
+	if dx == 0:
+		if position.y - ancora_pos.y > dy:
+			velocity.x = -velocity.x
+			velocity.y = -velocity.y
+		if position.y - ancora_pos.y < 0 && velocity.y < 0:
+			velocity.x = -velocity.x
+			velocity.y = -velocity.y
+	else:
+		if position.x - ancora_pos.x > dx:
+			velocity.x = -velocity.x
+			velocity.y = -velocity.y
+		if position.x - ancora_pos.x < 0 && velocity.x < 0:
+			velocity.x = -velocity.x
+			velocity.y = -velocity.y
+	move_and_collide(velocity)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
