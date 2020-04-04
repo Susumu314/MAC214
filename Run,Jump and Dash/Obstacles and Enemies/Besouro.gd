@@ -35,5 +35,9 @@ func _process(delta):
 		if position.x - ancora_pos.x < 0 && velocity.x < 0:
 			velocity.x = -velocity.x
 			velocity.y = -velocity.y
-	move_and_collide(velocity)
+	var c = move_and_collide(velocity)
+	if c:
+		if "Player" in c.get_collider().name:
+			if !c.get_collider().isDashing:
+				c.get_collider().dead()
 

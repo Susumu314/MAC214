@@ -21,7 +21,10 @@ var wallJumped = false
 var wallSlide = false
 var isDashing = false
 var can_jump = true
+var walldir = 0.0
 var timer_dash = 0.0
+var timer_wallJump = 0.0
+var timer_wallGrab = 0.0
 var leftplataform = 0.0 #usado para permitir que o player pule logo apos sair de uma plataforma
 
 
@@ -34,19 +37,27 @@ func Walk(dir, delta):
 		return
 	if wallGrab:
 		return
-	
+	if wallJumped:
+		return
 	if is_on_floor():
 		if get_floor_normal() != Vector2(0, -1):
 			velocity = Vector2(dir.x * speed * get_floor_normal().y, dir.x*speed*get_floor_normal().x)
 		else:
 			velocity.y = 5 #para nao ganhar velocidade de queda no solo e para nao bugar o is_on_floor
-	if !wallJumped:
-		velocity = Vector2(dir.x * speed, velocity.y)
+
+	velocity = Vector2(dir.x * speed, velocity.y)
 		
-	else:
-		velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
+	#else:
+	#	velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
 
 func jump():
+	if timer_wallGrab < 0.1:
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = -sin(PI/3)*jumpForce
+			velocity.x = -cos(PI/3)*jumpForce*walldir
+			wallGrab = false
+			wallJumped = true
+			return
 	if leftplataform <0.1:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jumpForce
@@ -132,13 +143,39 @@ func bounce():
 	timer_dash = 0
 	velocity = Vector2(0,-jumpForce)
 
+func wall_grab(delta):
+	wallGrab = false
+	if wallJumped:
+		timer_wallJump += delta
+		if timer_wallJump > 0.28:
+			wallJumped = false
+			timer_wallJump = 0.0
+	if is_on_wall():
+		if $Direita.is_colliding() && "Sticky" in $Direita.get_collider().name:
+			if dir.x > 0.5:
+				wallGrab = true
+				walldir = 1;
+		if $Esquerda.is_colliding() && "Sticky" in $Esquerda.get_collider().name:
+			if dir.x < -0.5:
+				wallGrab = true
+				walldir = -1
+	if wallGrab && !wallJumped:
+		velocity.y = 0
+	if wallGrab:
+		timer_wallGrab = 0.0
+	elif timer_wallGrab < 0.3 :
+		timer_wallGrab += delta
+
 func move():
 	move_and_slide(velocity, UP)
 	for i in get_slide_count():
-		if get_slide_collision(i).collider.name == "Spikes":
+		var collider = get_slide_collision(i).collider
+		if collider.name == "Spikes":
 			dead()
-		if "Enemy" in get_slide_collision(i).collider.name && !isDashing:
+		if "Enemy" in collider.name && !isDashing:
 			dead()
+		
+		
 func _physics_process(delta):
 	coyote_time(delta)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -148,6 +185,7 @@ func _physics_process(delta):
 		Walk(dir, delta)
 		velocity.y = min(velocity.y + GRAVITY, MAX_FALL_SPEED)
 		jump()
+		wall_grab(delta)
 		if power_gem:
 			animations("Power_Gem_Idle")
 		else:

@@ -87,3 +87,11 @@ anims/Power_Gem_Idle = SubResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.35849, 0.71698 )
 shape = SubResource( 5 )
+
+[node name="Direita" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 70, 0 )
+
+[node name="Esquerda" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -70, 0 )

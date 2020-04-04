@@ -28,7 +28,7 @@ tile_data = PoolIntArray( -2555754, 0, 262146, -2490218, 0, 65537, -2490217, 0, 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 13860, 2700 )
+position = Vector2( 840, 600 )
 
 [node name="Power_Gems" type="Node2D" parent="."]
 
