@@ -18,3 +18,5 @@ Dia 22/03 -
 3h de trabalho: Mudanças na mecanica de movimentação e adição de rampas ao tileset, concepção de uma nova fase maior por enquanto somente em lapis e papel.
 Dia 28/03 -
 3h de trabalho: Criação e testes da primeira fase principal, adição de plataformas com "one way collision", implementação da movimentação dos inimigos
+Dia 04/04 -
+3h de trabalho: Criação da mecanica de wall jump, e criação das paredes em que o player consegue utilizar o walljump
