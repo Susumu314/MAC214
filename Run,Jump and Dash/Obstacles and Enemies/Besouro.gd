@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 
 const tag = "enemy"

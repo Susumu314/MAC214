@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player_Sprite_Sheet.png" type="Texture" id=2]
@@ -66,7 +66,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 57.8661
+radius = 58.5269
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 22.6012, 10 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -85,7 +88,7 @@ anims/Idle = SubResource( 3 )
 anims/Power_Gem_Idle = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.35849, 0.71698 )
+position = Vector2( 0.0349426, -0.900688 )
 shape = SubResource( 5 )
 
 [node name="Direita" type="RayCast2D" parent="."]
@@ -95,3 +98,11 @@ cast_to = Vector2( 70, 0 )
 [node name="Esquerda" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( -70, 0 )
+
+[node name="Down" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 65 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( -0.34964, 43.0069 )
+shape = SubResource( 6 )

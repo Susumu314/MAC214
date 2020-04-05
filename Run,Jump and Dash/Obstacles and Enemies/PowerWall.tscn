@@ -3,7 +3,6 @@
 [ext_resource path="res://Obstacles and Enemies/BrokenWall.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/PowerBrokenStone.png" type="Texture" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 59.983, 59.9867 )
 

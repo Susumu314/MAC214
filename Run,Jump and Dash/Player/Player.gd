@@ -21,6 +21,7 @@ var wallJumped = false
 var wallSlide = false
 var isDashing = false
 var can_jump = true
+var snap
 var walldir = 0.0
 var timer_dash = 0.0
 var timer_wallJump = 0.0
@@ -167,7 +168,14 @@ func wall_grab(delta):
 		timer_wallGrab += delta
 
 func move():
-	move_and_slide(velocity, UP)
+	if $Down.is_colliding():
+		if $Down.get_collider().is_in_group("platforms"):
+			snap = Vector2.DOWN * 10
+		else:
+			 Vector2.ZERO
+	else:
+		snap = Vector2.ZERO
+	move_and_slide_with_snap(velocity, snap, UP)
 	for i in get_slide_count():
 		var collider = get_slide_collision(i).collider
 		if collider.name == "Spikes":

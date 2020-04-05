@@ -20,3 +20,5 @@ Dia 28/03 -
 3h de trabalho: Criação e testes da primeira fase principal, adição de plataformas com "one way collision", implementação da movimentação dos inimigos
 Dia 04/04 -
 3h de trabalho: Criação da mecanica de wall jump, e criação das paredes em que o player consegue utilizar o walljump
+Dia 05/04-
+3h de trabalho: Criação de plataformas que se movem em linha reta e plataformas que se movem em circulos
