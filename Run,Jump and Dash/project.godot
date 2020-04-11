@@ -19,6 +19,10 @@ config/name="Run,Jump and Dash"
 run/main_scene="res://Fases/FaseTeste.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerInfo="*res://Player/PlayerInfo.gd"
+
 [display]
 
 window/size/width=1920

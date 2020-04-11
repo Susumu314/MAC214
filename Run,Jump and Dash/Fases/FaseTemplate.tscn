@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Power_Gem/Power_Gem.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Tiles/TileSet1.tres" type="TileSet" id=4]
 [ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Void/Void.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Tiles/TileSetSticky.tres" type="TileSet" id=7]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,6 +20,10 @@
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 60, 60 )
 cell_custom_transform = Transform2D( 60, 0, 0, 60, 0, 0 )
+format = 1
+
+[node name="StickyWall" type="TileMap" parent="TileMaps"]
+tile_set = ExtResource( 7 )
 format = 1
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
