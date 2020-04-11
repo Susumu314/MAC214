@@ -22,3 +22,5 @@ Dia 04/04 -
 3h de trabalho: Criação da mecanica de wall jump, e criação das paredes em que o player consegue utilizar o walljump
 Dia 05/04-
 3h de trabalho: Criação de plataformas que se movem em linha reta e plataformas que se movem em circulos
+Dia 11/04 -
+3h de trabalho : Level Design. estudo para criação de mecanica de hook swing, inicio da implementação da GUI
