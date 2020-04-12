@@ -30,7 +30,7 @@ position = Vector2( 898.382, 544.155 )
 position = Vector2( 897.567, 430.123 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 751.608, 657.836 )
+position = Vector2( 2956.58, -604.538 )
 
 [node name="Power_Gem" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1616.91, 616.856 )
@@ -49,12 +49,21 @@ tile_data = PoolIntArray( -65488, 0, 196611, -65487, 0, 327684, -65486, 0, 32768
 
 [node name="PowerEnemyBesouro" parent="." instance=ExtResource( 8 )]
 position = Vector2( 5.78369, 280.559 )
+SPEED = 0
+dx = 0
+dy = 0
 
 [node name="EnemyBesouro" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1973.04, 572.153 )
+SPEED = 0
+dx = 0
+dy = 0
 
 [node name="PowerEnemyBesouro2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 528.451, -60.0556 )
+SPEED = 0
+dx = 0
+dy = 0
 
 [node name="Plataform" parent="." instance=ExtResource( 12 )]
 position = Vector2( 3337.27, -559.857 )
@@ -62,15 +71,26 @@ dy = 100
 
 [node name="PowerEnemyBesouro3" parent="." instance=ExtResource( 8 )]
 position = Vector2( -20.6433, -330.198 )
+SPEED = 0
+dx = 0
+dy = 0
 
 [node name="PowerEnemyBesouro4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 543.133, -620.895 )
+SPEED = 0
+dx = 0
+dy = 0
 
 [node name="EnemyBesouro2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2530.94, 580.962 )
+SPEED = 0
+dx = 0
+dy = 0
 
 [node name="OrbitingPlataformController" parent="." instance=ExtResource( 10 )]
 position = Vector2( 2123.39, -466.905 )
+radius = Vector2( 256, 256 )
+rotation_duration = 4.0
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
 position = Vector2( 228.098, -116.221 )
@@ -78,3 +98,9 @@ scale = Vector2( 2, 2 )
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
 position = Vector2( -228.098, 116.221 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( 3354.94, -916.19 )
+node_a = NodePath("../Hinge")
+node_b = NodePath("../Player")
+softness = 0.01
