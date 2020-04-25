@@ -27,6 +27,9 @@ var timer_dash = 0.0
 var timer_wallJump = 0.0
 var timer_wallGrab = 0.0
 var leftplataform = 0.0 #usado para permitir que o player pule logo apos sair de uma plataforma
+var pivots = [] 
+var swinging = false
+var pivot_prox = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -200,6 +203,49 @@ func _physics_process(delta):
 			animations("Idle")
 	dash(delta)
 	move()
+	swing()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func swing():
+	if (Input.is_action_just_pressed("swing")):
+		get_pivot()
+	if (Input.is_action_just_released("swing")):
+		swinging = false
+		pivot_prox = null
+	show_hook(pivot_prox)
+#	if (pivot_prox != null && swinging):
+#		var d = position.distance_to(pivot_prox.position)
+#		var sen = (pivot_prox.position.x - position.x)/d
+#		var cossen = (pivot_prox.position.y - position.y)/d
+#		var new_velocity = Vector2(velocity.x  + velocity.length_squared()*sen/d, velocity.y  + velocity.length_squared()*cossen/d)
+#		velocity = new_velocity
+func get_pivot():
+	var i = 0
+	while(i < pivots.size()):
+		if (pivot_prox == null):
+			pivot_prox = pivots[i]
+		else:
+			if (position.distance_to(pivots[i].position) < position.distance_to(pivot_prox.position)):
+				pivot_prox = pivots[i]
+		i = i + 1
+	if (pivot_prox != null): #se tiver um pivot proximo. jogar arpao
+		print(pivot_prox)
+		swinging = true
+
+func show_hook(pivot):
+	$Hook.clear_points()
+	$Hook.global_position = Vector2.ZERO
+	$Hook.global_rotation = 0
+	if (pivot_prox != null && swinging):
+		$Hook.add_point(pivot.position)
+		$Hook.add_point(position)
+
+func _on_Area2D_area_entered(area):
+	pivots.append(area)
+
+
+func _on_Area2D_area_exited(area):
+	pivots.erase(area)

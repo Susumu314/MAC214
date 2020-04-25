@@ -24,3 +24,5 @@ Dia 05/04-
 3h de trabalho: Criação de plataformas que se movem em linha reta e plataformas que se movem em circulos
 Dia 11/04 -
 3h de trabalho : Level Design. estudo para criação de mecanica de hook swing, inicio da implementação da GUI
+Dia 25/04-
+3h de trabalho : desenvolvimento da mecanica de atirar e balançar no arpão
