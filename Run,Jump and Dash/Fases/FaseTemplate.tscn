@@ -35,3 +35,5 @@ format = 1
 [node name="Power_Gem" parent="Power_Gems" instance=ExtResource( 2 )]
 
 [node name="InimigosObstaculos" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
