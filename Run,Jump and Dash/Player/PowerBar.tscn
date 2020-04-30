@@ -13,22 +13,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UnderPowerBar" type="TextureProgress" parent="."]
-margin_right = 360.0
-margin_bottom = 60.0
-value = 75.0
-texture_under = ExtResource( 2 )
-texture_over = ExtResource( 1 )
-texture_progress = ExtResource( 3 )
-tint_progress = Color( 0.670588, 0.647059, 1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="PowerBar" type="TextureProgress" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-value = 50.0
+texture_under = ExtResource( 2 )
+texture_over = ExtResource( 1 )
 texture_progress = ExtResource( 3 )
 tint_progress = Color( 0.317647, 0.27451, 1, 1 )
 __meta__ = {

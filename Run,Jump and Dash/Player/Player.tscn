@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player_Sprite_Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Player/PowerBar.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dash_l"
@@ -118,5 +119,13 @@ collision_mask = 2
 shape = SubResource( 7 )
 
 [node name="Hook" type="Line2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="PowerBar" parent="HUD" instance=ExtResource( 3 )]
+margin_left = 123.171
+margin_top = 82.8703
+margin_right = 123.171
+margin_bottom = 82.8704
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

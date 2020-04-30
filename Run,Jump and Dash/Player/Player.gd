@@ -31,7 +31,7 @@ var pivots = []
 var swinging = false
 var pivot_prox = null
 var d
-
+var recovety_rate = 300 # 300/segundo
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,6 +68,7 @@ func jump():
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = -jumpForce
 				power_gem = false
+				$HUD/PowerBar._on_power_updated(0)
 	if Input.is_action_just_released("jump"):
 		if velocity.y < 0:
 			velocity.y = 0
@@ -84,6 +85,7 @@ func dead():
 	get_tree().reload_current_scene()
 
 func power_gem():
+	$HUD/PowerBar._on_power_updated(100)
 	power_gem = true
 
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
@@ -95,6 +97,7 @@ func dash(delta):#personagem dá um dash na direcao que o player esta segurando,
 		if !isDashing:
 			if Input.is_action_just_pressed("dash_attack"):
 				power_gem = false
+				$HUD/PowerBar._on_power_updated(0)
 				if last_dir.y >= 0.87:
 					velocity = Vector2(0, 1) * dashSpeed 
 					isDashing = true
@@ -207,6 +210,7 @@ func _physics_process(delta):
 	dash(delta)
 	move()
 	swing(delta)
+	charge_power(delta)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -249,6 +253,14 @@ func show_hook(pivot):
 	if (pivot_prox != null && swinging):
 		$Hook.add_point(pivot.position)
 		$Hook.add_point(position)
+
+func charge_power(delta):
+	if is_on_floor(): #&& dir.x == 0:
+		if $HUD/PowerBar/PowerBar.value < 100:
+			$HUD/PowerBar/PowerBar.value += recovety_rate*delta
+		elif !power_gem:
+			power_gem()
+			
 
 func _on_Area2D_area_entered(area):
 	pivots.append(area)

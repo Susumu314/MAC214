@@ -26,3 +26,5 @@ Dia 11/04 -
 3h de trabalho : Level Design. estudo para criação de mecanica de hook swing, inicio da implementação da GUI
 Dia 25/04-
 3h de trabalho : desenvolvimento da mecanica de atirar e balançar no arpão
+Dia 29/04 -
+3h de trabalho: Concluido o desenvolvimento da mecanica de atirar e se balançar no arpao, adicionado HUD com visualizador de quantidade de "power", adicionado maneira alternativa de recuperação de power (se o personagem está tocando o chão ele recupera 300 de power/segundo, com um maximo de 100 de power).
