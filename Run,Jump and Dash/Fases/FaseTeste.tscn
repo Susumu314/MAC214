@@ -67,8 +67,8 @@ position = Vector2( 2530.94, 580.962 )
 position = Vector2( 2123.39, -466.905 )
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( 255.649, 13.402 )
+position = Vector2( -139.429, 214.699 )
 scale = Vector2( 2, 2 )
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( -255.649, -13.402 )
+position = Vector2( 139.429, -214.699 )

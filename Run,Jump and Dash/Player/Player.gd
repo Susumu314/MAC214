@@ -191,8 +191,7 @@ func move():
 			dead()
 		if "Enemy" in collider.name && !isDashing:
 			dead()
-		
-		
+			
 func _physics_process(delta):
 	coyote_time(delta)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -264,7 +263,9 @@ func charge_power(delta):
 
 func _on_Area2D_area_entered(area):
 	pivots.append(area)
+	area.get_child(1).modulate = Color(1, 1, 1)
 
 
 func _on_Area2D_area_exited(area):
 	pivots.erase(area)
+	area.get_child(1).modulate = Color(0,835,1, 1)

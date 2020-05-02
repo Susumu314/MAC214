@@ -203,10 +203,10 @@ position = Vector2( 11220, 3780 )
 radius = Vector2( 500, 256 )
 
 [node name="Plataform" parent="InimigosObstaculos/OrbitingPlataformController" instance=ExtResource( 10 )]
-position = Vector2( -215.222, -231.07 )
+position = Vector2( -362.687, 176.219 )
 
 [node name="Plataform2" parent="InimigosObstaculos/OrbitingPlataformController" instance=ExtResource( 10 )]
-position = Vector2( 215.222, 231.07 )
+position = Vector2( 362.687, -176.219 )
 
 [node name="OrbitingPlataformController2" parent="InimigosObstaculos" instance=ExtResource( 11 )]
 position = Vector2( 13140, 3840 )
@@ -214,10 +214,10 @@ radius = Vector2( 500, 256 )
 rotation_duration = -4.0
 
 [node name="Plataform" parent="InimigosObstaculos/OrbitingPlataformController2" instance=ExtResource( 10 )]
-position = Vector2( -215.222, 231.07 )
+position = Vector2( -362.687, -176.219 )
 
 [node name="Plataform2" parent="InimigosObstaculos/OrbitingPlataformController2" instance=ExtResource( 10 )]
-position = Vector2( 215.222, -231.07 )
+position = Vector2( 362.687, 176.219 )
 
 [node name="MovingPlatform" parent="InimigosObstaculos" instance=ExtResource( 12 )]
 position = Vector2( 14100, 3900 )

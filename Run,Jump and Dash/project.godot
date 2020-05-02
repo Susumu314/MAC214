@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 PlayerInfo="*res://Player/PlayerInfo.gd"
+SceneTransition="*res://Autoload/SceneTransition.tscn"
 
 [display]
 
