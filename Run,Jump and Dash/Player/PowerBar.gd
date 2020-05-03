@@ -14,6 +14,12 @@ func _on_power_updated(power):
 		update_tween.start()
 	else:
 		power_bar.value = power
+	
+func reset_power_to_max():
+	power_bar.value = 100
+	if update_tween.is_active():
+		update_tween.set_active(false)
+	
 
 func _on_max_power_updated(max_power):
 	power_bar.max_value = max_power

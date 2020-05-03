@@ -85,7 +85,6 @@ func dead():
 	get_tree().reload_current_scene()
 
 func power_gem():
-	$HUD/PowerBar._on_power_updated(100)
 	power_gem = true
 
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
@@ -193,6 +192,8 @@ func move():
 			dead()
 			
 func _physics_process(delta):
+	if power_gem && $HUD/PowerBar/PowerBar.value < 100:
+		$HUD/PowerBar.reset_power_to_max()
 	coyote_time(delta)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	dir.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
@@ -210,7 +211,6 @@ func _physics_process(delta):
 	move()
 	swing(delta)
 	charge_power(delta)
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
