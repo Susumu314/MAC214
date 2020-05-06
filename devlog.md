@@ -24,3 +24,13 @@ Dia 05/04-
 3h de trabalho: Criação de plataformas que se movem em linha reta e plataformas que se movem em circulos
 Dia 11/04 -
 3h de trabalho : Level Design. estudo para criação de mecanica de hook swing, inicio da implementação da GUI
+Dia 25/04-
+3h de trabalho : desenvolvimento da mecanica de atirar e balançar no arpão
+Dia 29/04 -
+3h de trabalho: Concluido o desenvolvimento da mecanica de atirar e se balançar no arpao, adicionado HUD com visualizador de quantidade de "power", adicionado maneira alternativa de recuperação de power (se o personagem está tocando o chão ele recupera 300 de power/segundo, com um maximo de 100 de power).
+Dia 02/05 - 
+4h30 de trabalho: Agora quando um pivot entra no alcance do player, ele muda de cor sinalizando que o player consegue se prender à ele, inicio do replanejamento das fases tutoriais, pesquisa e analise do level design das fases iniciais de Super Mario Bros (NES), Super Mario World(SNES), Donkey Kong Country (SNES), e Celeste (PC). Criação da fase tutorial 1 focada na mecanica de pulo, criação de transição entre Leveis, e criação de um DeathPlane para matar o jogador em "endless pits".
+Dia 03/05 - 
+3h30 de trabalho: Melhoria na representação do poder pela PowerBar, Criação de 3 fases tutorias, e inicio da implementação de audio no jogo
+Dia 05/05 -
+1h de Trabalho: Continuação da implementação de audio, e criação de titlescreen simples apenas para testes

@@ -27,18 +27,18 @@ var timer_dash = 0.0
 var timer_wallJump = 0.0
 var timer_wallGrab = 0.0
 var leftplataform = 0.0 #usado para permitir que o player pule logo apos sair de uma plataforma
-
+var pivots = [] 
+var swinging = false
+var pivot_prox = null
+var d
+var recovety_rate = 300 # 300/segundo
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	
 func Walk(dir, delta):
-	if !canMove:
-		return
-	if wallGrab:
-		return
-	if wallJumped:
+	if !canMove || wallJumped || wallGrab || swinging:
 		return
 	if is_on_floor():
 		if get_floor_normal() != Vector2(0, -1):
@@ -52,6 +52,8 @@ func Walk(dir, delta):
 	#	velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
 
 func jump():
+	if swinging:
+		return
 	if timer_wallGrab < 0.1:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -sin(PI/3)*jumpForce
@@ -66,6 +68,7 @@ func jump():
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = -jumpForce
 				power_gem = false
+				$HUD/PowerBar._on_power_updated(0)
 	if Input.is_action_just_released("jump"):
 		if velocity.y < 0:
 			velocity.y = 0
@@ -85,12 +88,15 @@ func power_gem():
 	power_gem = true
 
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
+	if swinging:
+		return
 	if dir != Vector2(0,0):
 		last_dir = dir
 	if power_gem:
 		if !isDashing:
 			if Input.is_action_just_pressed("dash_attack"):
 				power_gem = false
+				$HUD/PowerBar._on_power_updated(0)
 				if last_dir.y >= 0.87:
 					velocity = Vector2(0, 1) * dashSpeed 
 					isDashing = true
@@ -145,6 +151,8 @@ func bounce():
 	velocity = Vector2(0,-jumpForce)
 
 func wall_grab(delta):
+	if swinging:
+		return
 	wallGrab = false
 	if wallJumped:
 		timer_wallJump += delta
@@ -182,13 +190,14 @@ func move():
 			dead()
 		if "Enemy" in collider.name && !isDashing:
 			dead()
-		
-		
+			
 func _physics_process(delta):
+	if power_gem && $HUD/PowerBar/PowerBar.value < 100:
+		$HUD/PowerBar.reset_power_to_max()
 	coyote_time(delta)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	dir.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
-	if !isDashing:
+	if !isDashing && !swinging:
 		$Sprite.rotation_degrees = 0
 		Walk(dir, delta)
 		velocity.y = min(velocity.y + GRAVITY, MAX_FALL_SPEED)
@@ -200,6 +209,63 @@ func _physics_process(delta):
 			animations("Idle")
 	dash(delta)
 	move()
+	swing(delta)
+	charge_power(delta)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
+
+func swing(delta):
+	if (Input.is_action_just_pressed("swing")):
+		get_pivot()
+		if (pivot_prox != null):
+			d = position.distance_to(pivot_prox.position)
+	if (Input.is_action_just_released("swing")):
+		swinging = false
+		pivot_prox = null
+	show_hook(pivot_prox)
+	if (pivot_prox != null && swinging):
+		if is_on_ceiling() || is_on_wall() || is_on_floor():
+			velocity.y = -velocity.y
+			velocity.x = -velocity.x
+		var sen = (pivot_prox.position.x - position.x)/d
+		var cossen = (pivot_prox.position.y - position.y)/d
+		var new_velocity = Vector2(velocity.x  + velocity.length_squared()*sen*delta/d, velocity.y  + velocity.length_squared()*delta*cossen/d)
+		velocity = new_velocity
+func get_pivot():
+	var i = 0
+	while(i < pivots.size()):
+		if (pivot_prox == null):
+			pivot_prox = pivots[i]
+		else:
+			if (position.distance_to(pivots[i].position) < position.distance_to(pivot_prox.position)):
+				pivot_prox = pivots[i]
+		i = i + 1
+	if (pivot_prox != null): #se tiver um pivot proximo. jogar arpao
+		print(pivot_prox)
+		swinging = true
+
+func show_hook(pivot):
+	$Hook.clear_points()
+	$Hook.global_position = Vector2.ZERO
+	$Hook.global_rotation = 0
+	if (pivot_prox != null && swinging):
+		$Hook.add_point(pivot.position)
+		$Hook.add_point(position)
+
+func charge_power(delta):
+	if is_on_floor(): #&& dir.x == 0:
+		if $HUD/PowerBar/PowerBar.value < 100:
+			$HUD/PowerBar/PowerBar.value += recovety_rate*delta
+		elif !power_gem:
+			power_gem()
+			
+
+func _on_Area2D_area_entered(area):
+	pivots.append(area)
+	area.get_child(1).modulate = Color(1, 1, 1)
+
+
+func _on_Area2D_area_exited(area):
+	pivots.erase(area)
+	area.get_child(1).modulate = Color(0,835,1, 1)

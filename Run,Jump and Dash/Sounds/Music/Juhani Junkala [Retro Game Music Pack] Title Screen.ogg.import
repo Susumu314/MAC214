@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Juhani Junkala [Retro Game Music Pack] Title Screen.ogg-a5144db150045479c439e7ca64fa403c.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music/Juhani Junkala [Retro Game Music Pack] Title Screen.ogg"
+dest_files=[ "res://.import/Juhani Junkala [Retro Game Music Pack] Title Screen.ogg-a5144db150045479c439e7ca64fa403c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

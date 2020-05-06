@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Great Boss.ogg-695e0ef139bb1e59ca179d15ecfb3aa5.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music/Great Boss.ogg"
+dest_files=[ "res://.import/Great Boss.ogg-695e0ef139bb1e59ca179d15ecfb3aa5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
