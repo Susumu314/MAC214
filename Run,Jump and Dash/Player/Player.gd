@@ -212,8 +212,8 @@ func _physics_process(delta):
 	swing(delta)
 	charge_power(delta)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
 
 func swing(delta):
 	if (Input.is_action_just_pressed("swing")):

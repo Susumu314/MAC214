@@ -32,3 +32,5 @@ Dia 02/05 -
 4h30 de trabalho: Agora quando um pivot entra no alcance do player, ele muda de cor sinalizando que o player consegue se prender à ele, inicio do replanejamento das fases tutoriais, pesquisa e analise do level design das fases iniciais de Super Mario Bros (NES), Super Mario World(SNES), Donkey Kong Country (SNES), e Celeste (PC). Criação da fase tutorial 1 focada na mecanica de pulo, criação de transição entre Leveis, e criação de um DeathPlane para matar o jogador em "endless pits".
 Dia 03/05 - 
 3h30 de trabalho: Melhoria na representação do poder pela PowerBar, Criação de 3 fases tutorias, e inicio da implementação de audio no jogo
+Dia 05/05 -
+1h de Trabalho: Continuação da implementação de audio, e criação de titlescreen simples apenas para testes

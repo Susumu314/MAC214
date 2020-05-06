@@ -11,16 +11,20 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func play(audio):
-	if (audio == "Level1"):
-		if tocando !="Level1":
-			$Level1.play()
-			tocando = "Level1"
+func play_music(audio):
+	if audio != tocando:
+		stop_music(tocando)
+		for child in $Music.get_children():
+			if child.name == audio:
+				child.play()
+				tocando = audio
+				
+func play_sfx(audio):
+	for child in $SFX.get_children():
+		if child.name == audio:
+			child.play()	
 			
-func stop(audio):
-	if (audio == "BGM_Cave"):
-		$BGM_Cave.stop()
-	if (audio == "BGM_Outside"):
-		$BGM_Outside.stop()
-	else:
-		pass
+func stop_music(audio):
+	for child in $Music.get_children():
+		if child.name == audio:
+			child.stop()

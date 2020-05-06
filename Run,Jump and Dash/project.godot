@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 PlayerInfo="*res://Player/PlayerInfo.gd"
 SceneTransition="*res://Autoload/SceneTransition.tscn"
+MusicPlayer="*res://Autoload/MusicPlayer.tscn"
 
 [display]
 

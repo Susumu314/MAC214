@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tiles/TileSet1.tres" type="TileSet" id=1]
 [ext_resource path="res://Spikes/Spikes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Void/Void.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Fases/Fase1.gd" type="Script" id=6]
 
 [node name="Fase1" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Void" parent="." instance=ExtResource( 4 )]
 position = Vector2( -1760.34, -280.833 )
