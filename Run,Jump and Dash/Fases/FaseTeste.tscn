@@ -55,9 +55,6 @@ tile_data = PoolIntArray( -65488, 0, 196611, -65487, 0, 327684, -65486, 0, 32768
 
 [node name="EnemyBesouro" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1973.04, 572.153 )
-SPEED = 0
-dx = 0
-dy = 0
 
 [node name="Plataform" parent="." instance=ExtResource( 12 )]
 position = Vector2( 3337.27, -559.857 )
@@ -65,9 +62,6 @@ dy = 100
 
 [node name="EnemyBesouro2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2530.94, 580.962 )
-SPEED = 0
-dx = 0
-dy = 0
 
 [node name="OrbitingPlataformController" parent="." instance=ExtResource( 10 )]
 position = Vector2( 2123.39, -466.905 )
@@ -75,11 +69,11 @@ radius = Vector2( 256, 256 )
 rotation_duration = 4.0
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( 245.454, 72.7217 )
+position = Vector2( -13.398, 255.649 )
 scale = Vector2( 2, 2 )
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( -245.454, -72.7217 )
+position = Vector2( 13.398, -255.649 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2( 3354.94, -916.19 )

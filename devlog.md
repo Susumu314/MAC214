@@ -34,3 +34,5 @@ Dia 03/05 -
 3h30 de trabalho: Melhoria na representação do poder pela PowerBar, Criação de 3 fases tutorias, e inicio da implementação de audio no jogo
 Dia 05/05 -
 1h de Trabalho: Continuação da implementação de audio, e criação de titlescreen simples apenas para testes
+Dia 06/05 -
+1h de Trabalho: Criação da fase do primeiro boss
