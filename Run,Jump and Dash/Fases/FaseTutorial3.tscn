@@ -41,7 +41,7 @@ next_scene = "res://Fases/Fase1.tscn"
 position = Vector2( 3720, 3420 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 900, 720 )
+position = Vector2( 180, 720 )
 
 [node name="Power_Gems" type="Node2D" parent="."]
 

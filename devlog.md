@@ -36,3 +36,5 @@ Dia 05/05 -
 1h de Trabalho: Continuação da implementação de audio, e criação de titlescreen simples apenas para testes
 Dia 06/05 -
 1h de Trabalho: Criação da fase do primeiro boss
+Dia 08/05 -
+4h de Trabalho: TitleScreen, EndScreen, ajuste na mecanica de swing, implementação de timer e death counter

@@ -32,9 +32,11 @@ var swinging = false
 var pivot_prox = null
 var d
 var recovety_rate = 300 # 300/segundo
+var timer = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	timer = PlayerInfo.timer
 	pass # Replace with function body.
 	
 func Walk(dir, delta):
@@ -82,6 +84,7 @@ func coyote_time(delta):
 		leftplataform = 0
 		
 func dead():
+	PlayerInfo.deaths += 1
 	get_tree().reload_current_scene()
 
 func power_gem():
@@ -213,6 +216,8 @@ func _physics_process(delta):
 	charge_power(delta)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	timer += delta
+	$HUD/Timer.set_text(str(int(timer)))
 	pass
 
 func swing(delta):
@@ -220,6 +225,7 @@ func swing(delta):
 		get_pivot()
 		if (pivot_prox != null):
 			d = position.distance_to(pivot_prox.position)
+			set_velocity(d)
 	if (Input.is_action_just_released("swing")):
 		swinging = false
 		pivot_prox = null
@@ -228,9 +234,9 @@ func swing(delta):
 		if is_on_ceiling() || is_on_wall() || is_on_floor():
 			velocity.y = -velocity.y
 			velocity.x = -velocity.x
-		var sen = (pivot_prox.position.x - position.x)/d
-		var cossen = (pivot_prox.position.y - position.y)/d
-		var new_velocity = Vector2(velocity.x  + velocity.length_squared()*sen*delta/d, velocity.y  + velocity.length_squared()*delta*cossen/d)
+		var sen = (position.x - pivot_prox.position.x )/d
+		var cossen = (position.y - pivot_prox.position.y )/d
+		var new_velocity = Vector2(velocity.x  - velocity.length_squared()*sen*delta/d, velocity.y  - velocity.length_squared()*delta*cossen/d)
 		velocity = new_velocity
 func get_pivot():
 	var i = 0
@@ -243,7 +249,26 @@ func get_pivot():
 		i = i + 1
 	if (pivot_prox != null): #se tiver um pivot proximo. jogar arpao
 		print(pivot_prox)
-		swinging = true
+		swinging = true 
+
+func set_velocity(d):
+	var new_velocity
+	var velocidade = velocity.length()
+	if velocidade < 0.2 * speed:
+		velocidade = 0.2 * speed
+	var sen = (position.x - pivot_prox.position.x )/d
+	var cossen = (position.y - pivot_prox.position.y)/d
+	if sen > 0:
+		if (velocity.x > 0.2 * speed && cossen > 0) || (velocity.x < -0.5 * speed && -cossen > 0.71): 
+			new_velocity = Vector2(velocidade*cossen, -velocidade * sen)
+		else:
+			new_velocity = Vector2(-velocidade*cossen, velocidade * sen)
+	else:
+		if (velocity.x < -0.2 * speed && cossen > 0) || (velocity.x > 0.5 * speed && -cossen > 0.71):
+			new_velocity = Vector2(-velocidade*cossen, velocidade * sen)
+		else:
+			new_velocity = Vector2(velocidade*cossen, -velocidade * sen)
+	velocity = new_velocity
 
 func show_hook(pivot):
 	$Hook.clear_points()
