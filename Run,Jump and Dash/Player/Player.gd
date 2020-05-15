@@ -34,12 +34,56 @@ var pivot_prox = null
 var d
 var recovety_rate = 300 # 300/segundo
 var timer = 0
+var shield = true
+var shield_recovery = 50# 150/segundo
+var i_frames = 0.5 # 1/3 de segundos que fica sem tomar dano
+var i_timer = 0.51
+var stun = false
+
+func Hurt():
+	if i_timer <= i_frames*0.6:
+		stun = true
+		velocity = Vector2(-last_dir.x * speed * 0.5, 0)
+		if $Sprite.visible:
+			$Sprite.visible = false
+		else:
+			$Sprite.visible = true
+	else:
+		stun = false
+		if !$Sprite.visible:
+			$Sprite.visible = true
 
 # Called when the node enters the scene tree for the first time.
+func invincibility(delta):
+	if i_timer <= i_frames:
+		i_timer = i_timer + delta
+		
 func _ready():
 	timer = PlayerInfo.timer
+	$HUD/ShieldBar/PowerBar.value = 100
 	pass # Replace with function body.
+	
+func Damage():
+	if i_timer > i_frames:
+		if shield:
+			MusicPlayer.play_sfx("ShieldDamage")
+			shield = false
+			$HUD/ShieldBar/PowerBar.value = 99
+			$HUD/ShieldBar._on_power_updated(0)
+			$Shield.visible = false
+			i_timer = 0;
+		else:
+			dead()
 
+func Recover_Shield(delta):
+	if is_on_floor() && velocity.x == 0:
+		if $HUD/ShieldBar/PowerBar.value < 100:
+			$HUD/ShieldBar/PowerBar.value += shield_recovery*delta
+		elif !shield:
+			shield = true
+			$Shield.visible = true
+			MusicPlayer.play_sfx("ShieldRecovery")
+			
 func PowerParticles():
 	if power_gem && !$Particles2D.emitting:
 		$Particles2D.emitting = true
@@ -49,7 +93,7 @@ func PowerParticles():
 		$Particles2D.visible = false
 		
 func Walk(delta):
-	if !canMove || wallJumped || wallGrab || swinging:
+	if !canMove || wallJumped || wallGrab || swinging || stun:
 		return
 	if is_on_floor():
 		# nesse pedaço refazer o codigo de andar no slope de algum jeito, pq isso aqui tava bugando ocodigo de aceleracao
@@ -78,7 +122,7 @@ func Walk(delta):
 	#	velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
 
 func jump():
-	if swinging:
+	if swinging || stun:
 		return
 	if timer_wallGrab < 0.1:
 		if Input.is_action_just_pressed("jump"):
@@ -93,8 +137,7 @@ func jump():
 	elif power_gem:
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = -jumpForce
-				power_gem = false
-				$HUD/PowerBar._on_power_updated(0)
+				use_power()
 	if Input.is_action_just_released("jump"):
 		if velocity.y < 0:
 			velocity.y = 0
@@ -112,19 +155,22 @@ func dead():
 	get_tree().reload_current_scene()
 
 func power_gem():
-	
 	power_gem = true
 
+func use_power():
+	power_gem = false
+	$HUD/PowerBar._on_power_updated(0)
+	
+	
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
-	if swinging:
+	if swinging || stun:
 		return
 	if dir != Vector2(0,0):
 		last_dir = dir
 	if power_gem:
 		if !isDashing:
 			if Input.is_action_just_pressed("dash_attack"):
-				power_gem = false
-				$HUD/PowerBar._on_power_updated(0)
+				use_power()
 				if last_dir.y >= 0.87:
 					velocity = Vector2(0, 1) * dashSpeed 
 					isDashing = true
@@ -180,7 +226,7 @@ func bounce():
 	velocity = Vector2(0,-jumpForce)
 
 func wall_grab(delta):
-	if swinging:
+	if swinging || stun:
 		return
 	wallGrab = false
 	if wallJumped:
@@ -216,16 +262,25 @@ func move():
 	for i in get_slide_count():
 		var collider = get_slide_collision(i).collider
 		if collider.name == "Spikes":
-			dead()
+			Damage()
 		if "Enemy" in collider.name && !isDashing:
-			dead()
+			Damage()
 			
 func suicide():
 	if (Input.is_action_just_pressed("suicidio")):
 		dead()
-func _physics_process(delta):
+
+func Reset_Power():
 	if power_gem && $HUD/PowerBar/PowerBar.value < 100:
 		$HUD/PowerBar.reset_power_to_max()
+
+func Reset_Shield():
+	if power_gem && $HUD/PowerBar/PowerBar.value < 100:
+		$HUD/PowerBar.reset_power_to_max()
+
+func _physics_process(delta):
+	Reset_Shield()
+	Reset_Power()
 	coyote_time(delta)
 	dir.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	dir.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
@@ -243,6 +298,9 @@ func _physics_process(delta):
 	move()
 	swing(delta)
 	charge_power(delta)
+	invincibility(delta)
+	Recover_Shield(delta)
+	Hurt()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timer += delta
@@ -252,6 +310,8 @@ func _process(delta):
 	pass
 
 func swing(delta):
+	if stun:
+		return
 	if (Input.is_action_just_pressed("swing")):
 		get_pivot()
 		if (pivot_prox != null):
@@ -315,7 +375,6 @@ func charge_power(delta):
 			$HUD/PowerBar/PowerBar.value += recovety_rate*delta
 		elif !power_gem:
 			power_gem()
-			print("Piroca de baleai")
 			
 
 func _on_Area2D_area_entered(area):

@@ -61,10 +61,10 @@ radius = Vector2( 400, 400 )
 rotation_duration = 5.0
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 8 )]
-position = Vector2( 99.562, -387.411 )
+position = Vector2( 328.46, 228.285 )
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 8 )]
-position = Vector2( -99.562, 387.411 )
+position = Vector2( -328.46, -228.285 )
 
 [node name="OrbitingPlataformController2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 10988.8, 696.752 )
@@ -72,10 +72,10 @@ radius = Vector2( 400, 400 )
 rotation_duration = -5.0
 
 [node name="Plataform" parent="OrbitingPlataformController2" instance=ExtResource( 8 )]
-position = Vector2( 99.562, 387.411 )
+position = Vector2( 328.46, -228.285 )
 
 [node name="Plataform2" parent="OrbitingPlataformController2" instance=ExtResource( 8 )]
-position = Vector2( -99.562, -387.411 )
+position = Vector2( -328.46, 228.285 )
 
 [node name="LevelExit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 15315.7, -2672.15 )

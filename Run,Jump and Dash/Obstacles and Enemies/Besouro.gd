@@ -39,5 +39,5 @@ func _process(delta):
 	if c:
 		if "Player" in c.get_collider().name:
 			if !c.get_collider().isDashing:
-				c.get_collider().dead()
+				c.get_collider().Damage()
 

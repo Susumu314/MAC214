@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Obstacles and Enemies/PowerBesouro.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Fases/Tools/DeathPlane.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Fases/Tools/LevelExit.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Fases/FaseTutorial1.gd" type="Script" id=12]
+[ext_resource path="res://Fases/Offset_das_fases.tscn" type="PackedScene" id=13]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 12 )
@@ -160,3 +161,8 @@ position = Vector2( 12480, -600 )
 scale = Vector2( 3, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Area2D" parent="." instance=ExtResource( 13 )]
+position = Vector2( 7260, -1560 )
+offsetx = 500
+offsety = 250
