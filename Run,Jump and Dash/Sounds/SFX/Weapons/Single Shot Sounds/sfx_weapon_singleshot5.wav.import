@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_weapon_singleshot5.wav-49e4247e21ba37bdf8313f323cd893d9.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Weapons/Single Shot Sounds/sfx_weapon_singleshot5.wav"
+dest_files=[ "res://.import/sfx_weapon_singleshot5.wav-49e4247e21ba37bdf8313f323cd893d9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

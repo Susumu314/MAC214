@@ -38,3 +38,10 @@ Dia 06/05 -
 1h de Trabalho: Criação da fase do primeiro boss
 Dia 08/05 -
 4h de Trabalho: TitleScreen, EndScreen, ajuste na mecanica de swing, implementação de timer e death counter
+DIa 11/05 -
+1h15 de Trabalho: Analise de feedback de game testers, correção de bug no dash attack
+Dia 12/05 -
+1h de Trabalho: Ajustes na movimentação do personagem, adição de SFX para quando o personagem recupera stamina por meios especiais
+Dia 14/05 -
+1h de trabalho: Mudança da cor que representa o poder, e adicionado particulas para melhor visibilidade de quando se tem ou nao tem poder
+

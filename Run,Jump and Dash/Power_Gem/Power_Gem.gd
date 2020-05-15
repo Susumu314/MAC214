@@ -26,4 +26,5 @@ func _on_Area2D_body_entered(body):
 		player = body
 		if $Sprite.visible:
 			player.power_gem()
+			MusicPlayer.play_sfx("Recovery")
 		$Sprite.visible = false

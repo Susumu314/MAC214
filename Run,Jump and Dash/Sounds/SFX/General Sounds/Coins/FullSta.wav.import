@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FullSta.wav-6ae2deb386cd41baa616c65a19a2dd7d.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/General Sounds/Coins/FullSta.wav"
+dest_files=[ "res://.import/FullSta.wav-6ae2deb386cd41baa616c65a19a2dd7d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

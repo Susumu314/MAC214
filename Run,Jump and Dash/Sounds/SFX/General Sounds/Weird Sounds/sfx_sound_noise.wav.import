@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_sound_noise.wav-1a451e2f2d5cfb78077919e85d9b8cb8.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/General Sounds/Weird Sounds/sfx_sound_noise.wav"
+dest_files=[ "res://.import/sfx_sound_noise.wav-1a451e2f2d5cfb78077919e85d9b8cb8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

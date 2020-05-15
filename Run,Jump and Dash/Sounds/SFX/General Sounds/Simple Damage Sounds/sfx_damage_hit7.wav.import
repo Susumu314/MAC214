@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_damage_hit7.wav-6267bafbaa2ee23521ecc8dcf7c6e4ea.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/General Sounds/Simple Damage Sounds/sfx_damage_hit7.wav"
+dest_files=[ "res://.import/sfx_damage_hit7.wav-6267bafbaa2ee23521ecc8dcf7c6e4ea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

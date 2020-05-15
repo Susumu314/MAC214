@@ -70,11 +70,11 @@ position = Vector2( 2530.94, 580.962 )
 position = Vector2( 2123.39, -466.905 )
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( -46.6523, 251.713 )
+position = Vector2( 176.218, 185.697 )
 scale = Vector2( 2, 2 )
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( 46.6523, -251.713 )
+position = Vector2( -176.218, -185.697 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2( 3354.94, -916.19 )

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Autoload/MusicPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/Music/awake10_megaWall (online-audio-converter.com).ogg" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Music/Juhani Junkala [Retro Game Music Pack] Title Screen.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Music/Juhani Junkala [Retro Game Music Pack] Level 3.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/SFX/General Sounds/Coins/FullSta2.wav" type="AudioStream" id=5]
 
 [node name="MusicPlayer" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,3 +23,6 @@ stream = ExtResource( 3 )
 volume_db = -7.0
 
 [node name="SFX" type="Node2D" parent="."]
+
+[node name="Recovery" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 5 )

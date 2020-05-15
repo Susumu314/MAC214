@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player_Sprite_Sheet.png" type="Texture" id=2]
 [ext_resource path="res://Player/PowerBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/Roboto-Medium.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Player/PowerParticles.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dash_l"
@@ -144,5 +145,9 @@ text = "100"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Particles2D" parent="." instance=ExtResource( 5 )]
+scale = Vector2( 0.8, 0.8 )
+lifetime = 1.0
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

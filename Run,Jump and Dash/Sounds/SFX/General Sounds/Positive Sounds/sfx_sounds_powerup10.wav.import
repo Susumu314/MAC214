@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_sounds_powerup10.wav-74f03e538025a6d1069febab3d0ea601.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/General Sounds/Positive Sounds/sfx_sounds_powerup10.wav"
+dest_files=[ "res://.import/sfx_sounds_powerup10.wav-74f03e538025a6d1069febab3d0ea601.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

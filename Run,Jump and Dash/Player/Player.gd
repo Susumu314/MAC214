@@ -10,6 +10,7 @@ var dead = false
 var last_dir = Vector2()
 var dir = Vector2()
 var speed = 1500
+var ACCEL = 10*speed;#demora 1/10 segundos para velocidade maxima
 var jumpForce = 3000
 var slideSpeed = 600
 var wallJumpLerp = 1200
@@ -38,17 +39,40 @@ var timer = 0
 func _ready():
 	timer = PlayerInfo.timer
 	pass # Replace with function body.
-	
-func Walk(dir, delta):
+
+func PowerParticles():
+	if power_gem && !$Particles2D.emitting:
+		$Particles2D.emitting = true
+		$Particles2D.visible = true
+	if !power_gem:
+		$Particles2D.emitting = false
+		$Particles2D.visible = false
+		
+func Walk(delta):
 	if !canMove || wallJumped || wallGrab || swinging:
 		return
 	if is_on_floor():
-		if get_floor_normal() != Vector2(0, -1):
-			velocity = Vector2(dir.x * speed * get_floor_normal().y, dir.x*speed*get_floor_normal().x)
-		else:
+		# nesse pedaço refazer o codigo de andar no slope de algum jeito, pq isso aqui tava bugando ocodigo de aceleracao
+#		if get_floor_normal() != Vector2(0, -1):
+#			velocity = Vector2(dir.x * speed * get_floor_normal().y, dir.x*speed*get_floor_normal().x)
+#		else:
 			velocity.y = 5 #para nao ganhar velocidade de queda no solo e para nao bugar o is_on_floor
-
-	velocity = Vector2(dir.x * speed, velocity.y)
+	
+	if dir.x > 0:
+		if velocity.x >= 0:
+			velocity.x = min(speed, velocity.x + dir.x*ACCEL*delta)
+		else:
+			velocity.x = 0
+	elif dir.x < 0:
+		if velocity.x <= 0:
+			velocity.x = max(-speed, velocity.x + dir.x*ACCEL*delta)
+		else:
+			velocity.x = 0
+	else:
+		if velocity.x > 0:
+			velocity.x = max(0, velocity.x - ACCEL*delta)
+		if velocity.x < 0:
+			velocity.x = min(0, velocity.x + ACCEL*delta)
 		
 	#else:
 	#	velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
@@ -88,6 +112,7 @@ func dead():
 	get_tree().reload_current_scene()
 
 func power_gem():
+	
 	power_gem = true
 
 func dash(delta):#personagem dá um dash na direcao que o player esta segurando, priorizando as direcoes verticais e quebra paredes e mata monstros ao contato
@@ -139,6 +164,7 @@ func dash(delta):#personagem dá um dash na direcao que o player esta segurando,
 			if collision.collider.has_method("_break") && isDashing:
 				if "Power" in collision.collider.name:
 					power_gem()
+					MusicPlayer.play_sfx("Recovery")
 				if "Enemy" in collision.collider.name:
 					bounce()
 				collision.collider._break()
@@ -183,7 +209,7 @@ func move():
 		if $Down.get_collider().is_in_group("platforms"):
 			snap = Vector2.DOWN * 10
 		else:
-			 Vector2.ZERO
+			 snap = Vector2.ZERO
 	else:
 		snap = Vector2.ZERO
 	move_and_slide_with_snap(velocity, snap, UP)
@@ -194,6 +220,9 @@ func move():
 		if "Enemy" in collider.name && !isDashing:
 			dead()
 			
+func suicide():
+	if (Input.is_action_just_pressed("suicidio")):
+		dead()
 func _physics_process(delta):
 	if power_gem && $HUD/PowerBar/PowerBar.value < 100:
 		$HUD/PowerBar.reset_power_to_max()
@@ -202,7 +231,7 @@ func _physics_process(delta):
 	dir.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 	if !isDashing && !swinging:
 		$Sprite.rotation_degrees = 0
-		Walk(dir, delta)
+		Walk(delta)
 		velocity.y = min(velocity.y + GRAVITY, MAX_FALL_SPEED)
 		jump()
 		wall_grab(delta)
@@ -218,6 +247,8 @@ func _physics_process(delta):
 func _process(delta):
 	timer += delta
 	$HUD/Timer.set_text(str(int(timer)))
+	suicide()
+	PowerParticles()
 	pass
 
 func swing(delta):
@@ -225,7 +256,7 @@ func swing(delta):
 		get_pivot()
 		if (pivot_prox != null):
 			d = position.distance_to(pivot_prox.position)
-			set_velocity(d)
+			set_velocity()
 	if (Input.is_action_just_released("swing")):
 		swinging = false
 		pivot_prox = null
@@ -251,7 +282,7 @@ func get_pivot():
 		print(pivot_prox)
 		swinging = true 
 
-func set_velocity(d):
+func set_velocity():
 	var new_velocity
 	var velocidade = velocity.length()
 	if velocidade < 0.2 * speed:
@@ -279,11 +310,12 @@ func show_hook(pivot):
 		$Hook.add_point(position)
 
 func charge_power(delta):
-	if is_on_floor(): #&& dir.x == 0:
+	if is_on_floor() && !isDashing: #&& dir.x == 0:
 		if $HUD/PowerBar/PowerBar.value < 100:
 			$HUD/PowerBar/PowerBar.value += recovety_rate*delta
 		elif !power_gem:
 			power_gem()
+			print("Piroca de baleai")
 			
 
 func _on_Area2D_area_entered(area):

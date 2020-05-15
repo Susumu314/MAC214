@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_wpn_punch1.wav-94cad8ece36c7bc5de6a76e28ff40b4e.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Weapons/Melee/sfx_wpn_punch1.wav"
+dest_files=[ "res://.import/sfx_wpn_punch1.wav-94cad8ece36c7bc5de6a76e28ff40b4e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
