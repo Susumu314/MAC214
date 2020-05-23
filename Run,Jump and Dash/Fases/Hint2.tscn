@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fonts/Roboto-Medium.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fases/Hint1.gd" type="Script" id=2]
+[ext_resource path="res://Autoload/SceneTransition.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 1 )
+
+[node name="Hint2" type="Node2D"]
+script = ExtResource( 2 )
+next_scene = "res://Fases/FaseTutorial2.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1977.0
+margin_bottom = 1145.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color( 1, 0.886275, 0, 1 )
+margin_left = 1460.33
+margin_top = 951.614
+margin_right = 3411.33
+margin_bottom = 2060.61
+custom_fonts/normal_font = SubResource( 1 )
+text = "Loading..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+modulate = Color( 1, 0.886275, 0, 1 )
+margin_left = 13.3848
+margin_top = 9.82611
+margin_right = 1964.39
+margin_bottom = 1118.83
+custom_fonts/normal_font = SubResource( 1 )
+text = "Tip: Both Air Jump and Dash Attack 
+consumes Stamina."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneTransition" parent="." instance=ExtResource( 3 )]

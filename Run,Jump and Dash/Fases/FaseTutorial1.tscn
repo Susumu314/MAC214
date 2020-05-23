@@ -61,10 +61,10 @@ radius = Vector2( 400, 400 )
 rotation_duration = 5.0
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 8 )]
-position = Vector2( 328.46, 228.285 )
+position = Vector2( 115.597, 382.933 )
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 8 )]
-position = Vector2( -328.46, -228.285 )
+position = Vector2( -115.597, -382.933 )
 
 [node name="OrbitingPlataformController2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 10988.8, 696.752 )
@@ -72,14 +72,14 @@ radius = Vector2( 400, 400 )
 rotation_duration = -5.0
 
 [node name="Plataform" parent="OrbitingPlataformController2" instance=ExtResource( 8 )]
-position = Vector2( 328.46, -228.285 )
+position = Vector2( 115.597, -382.933 )
 
 [node name="Plataform2" parent="OrbitingPlataformController2" instance=ExtResource( 8 )]
-position = Vector2( -328.46, 228.285 )
+position = Vector2( -115.597, 382.933 )
 
 [node name="LevelExit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 15315.7, -2672.15 )
-next_scene = "res://Fases/FaseTutorial2.tscn"
+next_scene = "res://Fases/Hint2.tscn"
 
 [node name="DeathPlane" parent="." instance=ExtResource( 10 )]
 position = Vector2( 6189.82, 1505.65 )

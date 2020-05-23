@@ -41,7 +41,7 @@ var i_timer = 0.51
 var stun = false
 
 func Hurt():
-	if i_timer <= i_frames*0.6:
+	if i_timer <= i_frames*0.5:
 		stun = true
 		velocity = Vector2(-last_dir.x * speed * 0.5, 0)
 		if $Sprite.visible:

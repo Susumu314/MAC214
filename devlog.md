@@ -45,5 +45,6 @@ Dia 12/05 -
 Dia 14/05 -
 1h de trabalho: Mudança da cor que representa o poder, e adicionado particulas para melhor visibilidade de quando se tem ou nao tem poder
 Dia 15/05 -
-2h20 de trabalho: Adição de uma mecanica de escudo, quando player leva dano o escudo desaparece e se tomar dano sem escudo o player morre, o escudo regenera apenas se o player se manter parado, fazendo com que o player considere o risco de continuar sem escudo para ter um tempo menor ou de esperar o escudo voltar.
-
+2h30 de trabalho: Adição de uma mecanica de escudo, quando player leva dano o escudo desaparece e se tomar dano sem escudo o player morre, o escudo regenera apenas se o player se manter parado, fazendo com que o player considere o risco de continuar sem escudo para ter um tempo menor ou de esperar o escudo voltar.
+Dia 17/05 -
+1h de trabalho: Criação de telas de ajuda entre cada fase e exportação do projeto para game test

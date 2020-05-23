@@ -16,4 +16,4 @@ func _ready():
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_accept")):
 		PlayerInfo.Start_Timer()
-		$SceneTransition.change_scene("res://Fases/FaseTutorial1.tscn")
+		$SceneTransition.change_scene("res://Fases/Hint1.tscn")
