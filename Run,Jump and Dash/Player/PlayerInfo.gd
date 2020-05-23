@@ -5,6 +5,7 @@ var Score = 0
 var timer = 0
 var deaths = 0
 var start = false
+var checkpoint = 0
 
 func Start_Timer():
 	start = true

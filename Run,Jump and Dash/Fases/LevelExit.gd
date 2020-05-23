@@ -15,4 +15,5 @@ func _ready():
 
 func _on_LevelExit_body_entered(body):
 	if "Player" in body.name:
+		PlayerInfo.checkpoint = 0
 		SceneTransition.change_scene(next_scene)
