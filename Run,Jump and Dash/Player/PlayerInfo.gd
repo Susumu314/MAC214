@@ -6,6 +6,7 @@ var timer = 0
 var deaths = 0
 var start = false
 var checkpoint = 0
+var collectables = [];
 
 func Start_Timer():
 	start = true
@@ -17,7 +18,9 @@ func Stop_Timer():
 func _ready():
 	pass # Replace with function body.
 
-
+func collect(name):
+	collectables.append(name)
+	MusicPlayer.play_sfx("Collect")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if start:
