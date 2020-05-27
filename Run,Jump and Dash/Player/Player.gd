@@ -325,6 +325,10 @@ func swing(delta):
 		if is_on_ceiling() || is_on_wall() || is_on_floor():
 			velocity.y = -velocity.y
 			velocity.x = -velocity.x
+			if velocity.x > speed:
+				velocity.x = speed
+			if velocity.y > speed:
+				velocity.y = speed
 		var sen = (position.x - pivot_prox.position.x )/d
 		var cossen = (position.y - pivot_prox.position.y )/d
 		var new_velocity = Vector2(velocity.x  - velocity.length_squared()*sen*delta/d, velocity.y  - velocity.length_squared()*delta*cossen/d)

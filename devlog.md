@@ -48,3 +48,11 @@ Dia 15/05 -
 2h30 de trabalho: Adição de uma mecanica de escudo, quando player leva dano o escudo desaparece e se tomar dano sem escudo o player morre, o escudo regenera apenas se o player se manter parado, fazendo com que o player considere o risco de continuar sem escudo para ter um tempo menor ou de esperar o escudo voltar.
 Dia 17/05 -
 1h de trabalho: Criação de telas de ajuda entre cada fase e exportação do projeto para game test
+Dia 23/05 -
+3h de trabalho: Aumento da Fase 1, e criação de checkpoints
+Dia 24/05 -
+2h de trabalho: Level design em lapis e papel, e criação de objeto "Collectable"
+Dia 25/05-
+45min de trabalho - Level Design
+Dia 27/05-
+45min de trabalho - Level Design e ajustes na mecânica "swing"
