@@ -56,3 +56,5 @@ Dia 25/05-
 45min de trabalho - Level Design
 Dia 27/05-
 45min de trabalho - Level Design e ajustes na mecânica "swing"
+Dia 29/05-
+4h30 de trabalho - Level design e play testing, estudo de Game Design

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tiles/TileSet1.tres" type="TileSet" id=1]
 [ext_resource path="res://Spikes/Spikes.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Fases/Tools/Checkpoint.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Obstacles and Enemies/Besouro.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Obstacles and Enemies/Wall.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Fases/Tools/Collectable.tscn" type="PackedScene" id=17]
 
 [node name="Fase1" type="Node2D"]
 script = ExtResource( 6 )
@@ -29,6 +30,12 @@ offsetx = 550
 position = Vector2( 24090, -1890 )
 scale = Vector2( 1.511, 1 )
 offsetx = 400
+offsety = -300
+
+[node name="Area2D3" parent="." instance=ExtResource( 12 )]
+position = Vector2( 38010, -4980 )
+scale = Vector2( 0.993, 0.39 )
+offsetx = 200
 offsety = -300
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
@@ -171,3 +178,14 @@ checkpoint = 1
 [node name="BrokenWall" parent="." instance=ExtResource( 16 )]
 position = Vector2( 45780, -4740 )
 scale = Vector2( 3, 3 )
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="F1C1" parent="Collectables" instance=ExtResource( 17 )]
+position = Vector2( 28890, -3570 )
+
+[node name="F1C3" parent="Collectables" instance=ExtResource( 17 )]
+position = Vector2( 14220, 570 )
+
+[node name="F1C2" parent="Collectables" instance=ExtResource( 17 )]
+position = Vector2( 40980, -5190 )
