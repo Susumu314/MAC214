@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shade4.wav-4cb1952d035444b535fb37e9256619dc.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/RPG Sound Pack/NPC/shade/shade4.wav"
+dest_files=[ "res://.import/shade4.wav-4cb1952d035444b535fb37e9256619dc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

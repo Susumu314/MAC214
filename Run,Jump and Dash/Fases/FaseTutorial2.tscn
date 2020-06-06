@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Obstacles and Enemies/PowerBesouro.tscn" type="PackedScene" id=2]
@@ -15,9 +15,18 @@
 [ext_resource path="res://Fases/Offset_das_fases.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Fases/Tools/Checkpoint.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Fases/Tools/Collectable.tscn" type="PackedScene" id=15]
+[ext_resource path="res://UI/TipBox.tscn" type="PackedScene" id=16]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 12 )
+
+[node name="TipBox" parent="." instance=ExtResource( 16 )]
+position = Vector2( 780, 840 )
+text = "     Press K to Dash"
+
+[node name="TipBox2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 9120, -300 )
+text = "Shield restores only while standing still"
 
 [node name="TileMaps" type="Node2D" parent="."]
 

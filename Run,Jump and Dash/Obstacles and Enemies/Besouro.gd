@@ -12,6 +12,7 @@ var modo
 
 func _break():
 	$CollisionShape2D.disabled = true
+	MusicPlayer.play_sfx("Beatle")
 	queue_free()
 
 func _ready():

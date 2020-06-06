@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/coin2.wav-ec1834bc3ad0a8707ab1da9000a54123.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/RPG Sound Pack/inventory/coin2.wav"
+dest_files=[ "res://.import/coin2.wav-ec1834bc3ad0a8707ab1da9000a54123.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

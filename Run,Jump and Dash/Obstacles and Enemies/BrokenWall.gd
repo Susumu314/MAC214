@@ -6,6 +6,7 @@ extends StaticBody2D
 # var b = "text"
 func _break():
 	$CollisionShape2D.disabled = true
+	MusicPlayer.play_sfx("Break")
 	queue_free()
 
 # Called when the node enters the scene tree for the first time.

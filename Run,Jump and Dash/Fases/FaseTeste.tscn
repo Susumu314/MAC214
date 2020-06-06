@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Tiles/TileSet1.tres" type="TileSet" id=1]
 [ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=2]
@@ -13,8 +13,12 @@
 [ext_resource path="res://Plataforms/Plataform.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Plataforms/MovingPlatform.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Obstacles and Enemies/PowerWall.tscn" type="PackedScene" id=13]
+[ext_resource path="res://UI/TipBox.tscn" type="PackedScene" id=14]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource( 14 )]
+position = Vector2( 510, 660 )
 
 [node name="Spikes" parent="." instance=ExtResource( 3 )]
 tile_data = PoolIntArray( 131034, 0, 0, 131035, 0, 0, 131036, 0, 0, 131037, 0, 0, 131038, 0, 0, 131039, 0, 0, 131054, 0, 0, 131055, 0, 0, 131056, 0, 0, 131057, 0, 0 )
@@ -75,11 +79,11 @@ position = Vector2( 2530.94, 580.962 )
 position = Vector2( 2123.39, -466.905 )
 
 [node name="Plataform2" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( 255.649, -13.3931 )
+position = Vector2( 185.696, 176.219 )
 scale = Vector2( 2, 2 )
 
 [node name="Plataform" parent="OrbitingPlataformController" instance=ExtResource( 11 )]
-position = Vector2( -255.649, 13.3931 )
+position = Vector2( -185.696, -176.219 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2( 3354.94, -916.19 )

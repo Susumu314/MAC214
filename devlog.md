@@ -58,3 +58,7 @@ Dia 27/05-
 45min de trabalho - Level Design e ajustes na mecânica "swing"
 Dia 29/05-
 4h30 de trabalho - Level design e play testing, estudo de Game Design
+Dia 30/05 -
+3h de trabalho - Planejamento de novas interações entre mecanicas e obstaculos, planejamento do que adicionar ao jogo.
+Dia 06/06-
+5h30 de trabalho - Busca e adição de mais SFXs, criação de TipBox, para auxiliar o player nos tutoriais, inicio da criacao de nova fase em lapis e papel.
