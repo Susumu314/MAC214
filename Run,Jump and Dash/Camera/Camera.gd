@@ -18,3 +18,4 @@ func _process(delta):
 	if player.velocity.x < 0:
 		deslocamento.x = max(deslocamento.x - velocidade_offset, -MAX_OFFSET)
 	position = lerp(position,player.position + deslocamento + Stage_Offset, velocidade_offset*delta)
+	PlayerInfo.camera_position = self.global_position

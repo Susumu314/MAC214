@@ -1,35 +1,33 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/Roboto-Medium.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Fases/EndScreen.gd" type="Script" id=2]
+[ext_resource path="res://Fases/Fase2Prelude.gd" type="Script" id=2]
 [ext_resource path="res://Autoload/SceneTransition.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 200
+size = 220
 font_data = ExtResource( 1 )
 
-[node name="Control" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Prelude" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1977.0
+margin_bottom = 1145.0
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1945.0
-margin_bottom = 1122.0
-color = Color( 0, 0, 0, 1 )
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-modulate = Color( 0.952941, 0.976471, 0, 1 )
-margin_right = 1926.0
-margin_bottom = 1080.0
+modulate = Color( 1, 0.886275, 0, 1 )
+margin_left = 3.896
+margin_right = 1954.9
+margin_bottom = 1109.0
 custom_fonts/normal_font = SubResource( 1 )
-text = " 		 
-		Time:
-		Deaths:
-		Press Start"
+text = "   Congratulations
+You got all crystals
+       Press Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }

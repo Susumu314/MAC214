@@ -62,3 +62,13 @@ Dia 30/05 -
 3h de trabalho - Planejamento de novas interações entre mecanicas e obstaculos, planejamento do que adicionar ao jogo.
 Dia 06/06-
 5h30 de trabalho - Busca e adição de mais SFXs, criação de TipBox, para auxiliar o player nos tutoriais, inicio da criacao de nova fase em lapis e papel.
+Dia 07/06-
+2h de trabalho - Teste de mecanica de pivots que se mexem, criação de plataforma que se move para a fase2, inicio da criacao da fase 2
+Dia 08/06 -
+1h de trabalho - Inicio da criacao de um indicador para se saber onde a plataforma movel está quando offscreen
+Dia 09/06-
+40 min de trabalho - Témino da criacao do indicador e inicio da construção da Fase 2 do jogo.
+Dia 11/06-
+1h de trabalho - 1h de level design
+Dia 13/06-
+5h30 de trabalho - Criação, level design e testes da Fase2, mudança na sprite das power_gems, criação do besouro atirador e do power besouro atirador incluindo todos os assets que usam,  algumas mudanças nas fases e ajustes de gameplay.

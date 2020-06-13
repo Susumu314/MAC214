@@ -124,7 +124,7 @@ func Walk(delta):
 func jump():
 	if swinging || stun:
 		return
-	if timer_wallGrab < 0.1:
+	if timer_wallGrab < 0.2:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -sin(PI/3)*jumpForce
 			velocity.x = -cos(PI/3)*jumpForce*walldir
@@ -311,11 +311,13 @@ func _process(delta):
 
 func swing(delta):
 	if stun:
+		swinging = false
+		pivot_prox = null
 		return
 	if (Input.is_action_just_pressed("swing")):
 		get_pivot()
 		if (pivot_prox != null):
-			d = position.distance_to(pivot_prox.position)
+			d = position.distance_to(pivot_prox.global_position)
 			set_velocity()
 	if (Input.is_action_just_released("swing")):
 		swinging = false
@@ -329,8 +331,8 @@ func swing(delta):
 				velocity.x = speed
 			if velocity.y > speed:
 				velocity.y = speed
-		var sen = (position.x - pivot_prox.position.x )/d
-		var cossen = (position.y - pivot_prox.position.y )/d
+		var sen = (position.x - pivot_prox.global_position.x )/d
+		var cossen = (position.y - pivot_prox.global_position.y )/d
 		var new_velocity = Vector2(velocity.x  - velocity.length_squared()*sen*delta/d, velocity.y  - velocity.length_squared()*delta*cossen/d)
 		velocity = new_velocity
 func get_pivot():
@@ -339,7 +341,7 @@ func get_pivot():
 		if (pivot_prox == null):
 			pivot_prox = pivots[i]
 		else:
-			if (position.distance_to(pivots[i].position) < position.distance_to(pivot_prox.position)):
+			if (position.distance_to(pivots[i].global_position) < position.distance_to(pivot_prox.global_position)):
 				pivot_prox = pivots[i]
 		i = i + 1
 	if (pivot_prox != null): #se tiver um pivot proximo. jogar arpao
@@ -351,8 +353,8 @@ func set_velocity():
 	var velocidade = velocity.length()
 	if velocidade < 0.2 * speed:
 		velocidade = 0.2 * speed
-	var sen = (position.x - pivot_prox.position.x )/d
-	var cossen = (position.y - pivot_prox.position.y)/d
+	var sen = (position.x - pivot_prox.global_position.x )/d
+	var cossen = (position.y - pivot_prox.global_position.y)/d
 	if sen > 0:
 		if (velocity.x > 0.2 * speed && cossen > 0) || (velocity.x < -0.5 * speed && -cossen > 0.71): 
 			new_velocity = Vector2(velocidade*cossen, -velocidade * sen)
@@ -370,7 +372,7 @@ func show_hook(pivot):
 	$Hook.global_position = Vector2.ZERO
 	$Hook.global_rotation = 0
 	if (pivot_prox != null && swinging):
-		$Hook.add_point(pivot.position)
+		$Hook.add_point(pivot.global_position)
 		$Hook.add_point(position)
 
 func charge_power(delta):
@@ -382,10 +384,12 @@ func charge_power(delta):
 			
 
 func _on_Area2D_area_entered(area):
-	pivots.append(area)
-	area.get_child(1).modulate = Color(1, 1, 1)
+	if "Pivot" in area.name:
+		pivots.append(area)
+		area.get_child(1).modulate = Color(1, 1, 1)
 
 
 func _on_Area2D_area_exited(area):
-	pivots.erase(area)
-	area.get_child(1).modulate = Color(0,835,1, 1)
+	if "Pivot" in area.name:
+		pivots.erase(area)
+		area.get_child(1).modulate = Color(0,835,1, 1)

@@ -7,6 +7,7 @@ var deaths = 0
 var start = false
 var checkpoint = 0
 var collectables = [];
+var camera_position = Vector2(0,00)
 
 func Start_Timer():
 	start = true

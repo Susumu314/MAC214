@@ -83,6 +83,8 @@ size = 110
 font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 524289
+collision_mask = 524289
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
