@@ -76,3 +76,5 @@ Dia 14/06-
 1h30 de trabalho - Ajustes no gameplay e level design e exportação do jogo para testes com jogadores
 Dia 15/06-
 2h de trabalho - Ajustes no jogo com base nas criticas de jogadores: Ajustada a mecânica de swing, camera melhorada, dificuldade do boss ajustada.
+Dia 19/06-
+2h40 de trabalho - Finalização e ajustes do level design
