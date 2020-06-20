@@ -8,6 +8,7 @@ var start = false
 var checkpoint = 0
 var collectables = [];
 var camera_position = Vector2(0,00)
+var true_end = false
 
 func Start_Timer():
 	start = true

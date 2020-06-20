@@ -39,6 +39,9 @@ var shield_recovery = 50# 150/segundo
 var i_frames = 0.5 # 1/3 de segundos que fica sem tomar dano
 var i_timer = 0.51
 var stun = false
+var last_pivot = null
+var restart_delay = 0.1
+var restart_timer = 0.0
 
 func Hurt():
 	if i_timer <= i_frames*0.5:
@@ -122,8 +125,10 @@ func Walk(delta):
 	#	velocity = velocity.linear_interpolate(Vector2(dir.x * speed, velocity.y), wallJumpLerp * delta)
 
 func jump():
-	if swinging || stun:
+	if stun || isDashing:
 		return
+	if swinging && !power_gem:
+			return
 	if timer_wallGrab < 0.2:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -sin(PI/3)*jumpForce
@@ -138,10 +143,12 @@ func jump():
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = -jumpForce
 				use_power()
+				swinging = false
+				pivot_prox = null
 	if Input.is_action_just_released("jump"):
 		if velocity.y < 0:
 			velocity.y = 0
-	if is_on_ceiling():
+	if is_on_ceiling() && !swinging:
 		velocity.y = +1
 
 func coyote_time(delta):
@@ -279,6 +286,8 @@ func Reset_Shield():
 		$HUD/PowerBar.reset_power_to_max()
 
 func _physics_process(delta):
+	if restart_timer < restart_delay:
+		return
 	Reset_Shield()
 	Reset_Power()
 	coyote_time(delta)
@@ -288,12 +297,12 @@ func _physics_process(delta):
 		$Sprite.rotation_degrees = 0
 		Walk(delta)
 		velocity.y = min(velocity.y + GRAVITY, MAX_FALL_SPEED)
-		jump()
 		wall_grab(delta)
 		if power_gem:
 			animations("Power_Gem_Idle")
 		else:
 			animations("Idle")
+	jump()
 	dash(delta)
 	move()
 	swing(delta)
@@ -304,6 +313,8 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timer += delta
+	if restart_timer < restart_delay:
+		restart_timer += delta
 	$HUD/Timer.set_text(str(int(timer)))
 	suicide()
 	PowerParticles()
@@ -341,10 +352,11 @@ func get_pivot():
 		if (pivot_prox == null):
 			pivot_prox = pivots[i]
 		else:
-			if (position.distance_to(pivots[i].global_position) < position.distance_to(pivot_prox.global_position)):
+			if (position.distance_to(pivots[i].global_position) < position.distance_to(pivot_prox.global_position) || pivots[i] != last_pivot):
 				pivot_prox = pivots[i]
 		i = i + 1
 	if (pivot_prox != null): #se tiver um pivot proximo. jogar arpao
+		last_pivot = pivot_prox
 		print(pivot_prox)
 		swinging = true 
 
@@ -365,7 +377,13 @@ func set_velocity():
 			new_velocity = Vector2(-velocidade*cossen, velocidade * sen)
 		else:
 			new_velocity = Vector2(velocidade*cossen, -velocidade * sen)
-	velocity = new_velocity
+	if new_velocity.length() < 1.2*speed:
+		velocity = new_velocity.normalized()*1.3*speed
+	elif new_velocity.length() > 1.8*speed:
+		velocity = new_velocity.normalized()*1.8*speed
+	else:
+		velocity = new_velocity
+	
 
 func show_hook(pivot):
 	$Hook.clear_points()

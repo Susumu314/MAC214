@@ -72,3 +72,7 @@ Dia 11/06-
 1h de trabalho - 1h de level design
 Dia 13/06-
 5h30 de trabalho - Criação, level design e testes da Fase2, mudança na sprite das power_gems, criação do besouro atirador e do power besouro atirador incluindo todos os assets que usam,  algumas mudanças nas fases e ajustes de gameplay.
+Dia 14/06-
+1h30 de trabalho - Ajustes no gameplay e level design e exportação do jogo para testes com jogadores
+Dia 15/06-
+2h de trabalho - Ajustes no jogo com base nas criticas de jogadores: Ajustada a mecânica de swing, camera melhorada, dificuldade do boss ajustada.
